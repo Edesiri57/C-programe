@@ -7,21 +7,29 @@ typedef struct NodeT{
     struct NodeT *next;
 }Node;
 
-Node *sHead = NULL;void sPush(int value){
+Node *sHead = NULL;
+
+void sPush(int value){
     Node *temp;
-
     temp = (Node *)malloc(sizeof(Node));
-
-    if(temp == NULL){
-        printf("stack overflow\n");
-        exit(1);
-    }else{
-
     temp->data = value;
     temp->next = sHead;
     sHead = temp;
-    }
 }
+
+int sPop(){
+    Node *temp;
+    temp = sHead;
+
+    int value = sHead->data;
+
+
+    sHead = sHead->next; 
+    free(temp);
+    return value;
+}
+
+
 
 void printStack(){
     Node *temp = sHead;
